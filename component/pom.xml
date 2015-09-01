@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>de.maggu2810.osgi.compendium</groupId>
+    <artifactId>org.osgi.compendium.split</artifactId>
+    <version>5.0.0.sp1</version>
+  </parent>
+
+  <artifactId>org.osgi.compendium.split.service.component</artifactId>
+  <packaging>bundle</packaging>
+
+  <name>OSGi Compendium (split) :: Service Component</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.compendium</artifactId>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <configuration>
+          <instructions>
+            <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+            <Export-Package>
+              org.osgi.service.component;uses:=org.osgi.framework;version=1.2.1,
+              org.osgi.service.component.annotations;version=1.2
+            </Export-Package>
+            <Embed-Dependency>*;scope=compile;inline=org/osgi/service/component/**</Embed-Dependency>
+            <_removeheaders>Ignore-Package,Include-Resource,Private-Package,Embed-Dependency</_removeheaders>
+          </instructions>
+          <unpackBundle>true</unpackBundle>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
